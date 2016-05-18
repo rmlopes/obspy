@@ -286,6 +286,36 @@ class Client(object):
             sds_type=sds_type)
         return os.path.join(self.sds_root, filename)
 
+    def _split_stream_by_filenames(self, stream, sds_type=None):
+        """
+        Split stream into dictionary mapping by filenames in SDS archive.
+
+        :type stream: str
+        :param stream: Input stream to split up.
+        :type sds_type: str
+        :param sds_type: Override SDS data type identifier that was specified
+            during client initialization.
+        :rtype: dict
+        """
+        sds_type = sds_type or self.sds_type
+        ids = set([tr.id for tr in stream])
+        dict_ = {}
+        for id_ in ids:
+            network, station, location, channel = id_.split(".")
+            st_ = stream.select(id=id_)
+            start = min([tr.stats.starttime for tr in st_])
+            end = max([tr.stats.endtime for tr in st_])
+            filenames = self._get_filenames(
+                network=network, station=station, location=location,
+                channel=channel, starttime=start, endtime=end,
+                only_existing_files=False)
+            for filename in filenames:
+                start, end = self._filename_to_time_range(filename)
+                st__ = st_.slice(start, end, nearest_sample=False)
+                if st__:
+                    dict_[filename] = st_.slice(start, end)
+        return dict_
+
     def _filename_to_time_range(self, filename):
         """
         Get expected start and end time of data stored in given filename (full
