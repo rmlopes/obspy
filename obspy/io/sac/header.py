@@ -16,22 +16,22 @@ documentation is in a dictionary, for reuse throughout the package.
 
 # header documentation is large and used in several places, so we just write
 # it once here and distributed it as needed.
-DOC = {'npts': 'N    Number of points per data component. [required]',
+DOC = {'npts': 'N    Number of points per data component.',
        'nvhdr': '''N    Header version number. Current value is the integer 6.
                   Older version data (NVHDR < 6) are automatically updated
-                  when read into sac. [required]''',
-       'b': 'F    Beginning value of the independent variable. [required]',
-       'e': 'F    Ending value of the independent variable. [required]',
-       'iftype': '''I    Type of file [required]:
+                  when read into sac.''',
+       'b': 'F    Beginning value of the independent variable.',
+       'e': 'F    Ending value of the independent variable.',
+       'iftype': '''I    Type of file:
 
                   * ITIME {Time series file}
                   * IRLIM {Spectral file---real and imaginary}
                   * IAMPH {Spectral file---amplitude and phase}
                   * IXY {General x versus y data}
                   * IXYZ {General XYZ (3-D) file}''',
-       'leven': 'L    TRUE if data is evenly spaced. [required]',
+       'leven': 'L    TRUE if data is evenly spaced.',
        'delta': 'F    Increment between evenly spaced samples (nominal value).'
-                ' [required]',
+                '',
        'odelta': 'F    Observed increment if different from nominal value.',
        'idep': '''I    Type of dependent variable:
 
@@ -40,8 +40,7 @@ DOC = {'npts': 'N    Number of points per data component. [required]',
                   * IVEL (Velocity in nm/sec)
                   * IVOLTS (Velocity in volts)
                   * IACC (Acceleration in nm/sec/sec)''',
-       'scale': 'F    Multiplying scale factor for dependent variable '
-                '[not currently used]',
+       'scale': 'F    Multiplying scale factor for dependent variable ',
        'depmin': 'F    Minimum value of dependent variable.',
        'depmax': 'F    Maximum value of dependent variable.',
        'depmen': 'F    Mean value of dependent variable.',
@@ -97,26 +96,25 @@ DOC = {'npts': 'N    Number of points per data component. [required]',
        'kt8': 'F    User defined time pick identification.',
        'kt9': 'F    User defined time pick identification.',
        'kinst': 'K    Generic name of recording instrument',
-       'iinst': 'I    Type of recording instrument. [currently not used]',
+       'iinst': 'I    Type of recording instrument.',
        'knetwk': 'K    Name of seismic network.',
        'kstnm': 'K    Station name.',
-       'istreg': 'I    Station geographic region. [not currently used]',
+       'istreg': 'I    Station geographic region.',
        'stla': 'F    Station latitude (degrees, north positive)',
        'stlo': 'F    Station longitude (degrees, east positive).',
-       'stel': 'F    Station elevation (meters). [not currently used]',
-       'stdp': 'F    Station depth below surface (meters). '
-               '[not currently used]',
+       'stel': 'F    Station elevation (meters).',
+       'stdp': 'F    Station depth below surface (meters). ',
        'cmpaz': 'F    Component azimuth (degrees, clockwise from north).',
        'cmpinc': 'F    Component incident angle (degrees, from vertical).',
        'kcmpnm': 'K    Component name.',
        'lpspol': 'L    TRUE if station components have a positive polarity '
                  '(left-hand rule).',
        'kevnm': 'K    Event name.',
-       'ievreg': 'I    Event geographic region. [not currently used]',
+       'ievreg': 'I    Event geographic region.',
        'evla': 'F    Event latitude (degrees north positive).',
        'evlo': 'F    Event longitude (degrees east positive).',
-       'evel': 'F    Event elevation (meters). [not currently used]',
-       'evdp': 'F    Event depth below surface (meters). [not currently used]',
+       'evel': 'F    Event elevation (meters).',
+       'evdp': 'F    Event depth below surface (meters).',
        'mag': 'F    Event magnitude.',
        'imagtyp': '''I    Magnitude type:
 
@@ -180,14 +178,14 @@ DOC = {'npts': 'N    Number of points per data component. [required]',
        'gcarc': 'F    Station to event great circle arc length (degrees).',
        'lcalda': 'L    TRUE if DIST AZ BAZ and GCARC are to be calculated '
                  'from st event coordinates.',
-       'iqual': '''I    Quality of data [not currently used]:
+       'iqual': '''I    Quality of data:
 
                   * IGOOD (Good data)
                   * IGLCH (Glitches)
                   * IDROP (Dropouts)
                   * ILOWSN (Low signal to noise ratio)
                   * IOTHER (Other)''',
-       'isynth': '''I    Synthetic data flag [not currently used]:
+       'isynth': '''I    Synthetic data flag:
 
                   * IRLDTA (Real data)
                   * ????? (Flags for various synthetic seismogram codes)''',
