@@ -1287,7 +1287,8 @@ class WaveformPlotting(object):
         # Matplotlib 1.5.x does not support interpolation on fill_betweenx
         # Should be integrated by version 2.1 (see PR#6560)
         if self.sect_orientation == 'vertical':
-            self.fillfun = functools.partial(ax.fill_betweenx, lw=0)
+            self.fillfun = functools.partial(ax.fill_betweenx, lw=0,
+                                             interpolate=True)
         else:
             self.fillfun = functools.partial(ax.fill_between, lw=0,
                                              interpolate=True)
